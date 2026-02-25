@@ -1,4 +1,4 @@
-%function NEAR_ICA_step1()
+function NEAR_ICA_step1()
 
 raw_data_dir='/home/common/bonaiuto/infant_face_eeg/raw/';
 deriv_data_dir='/home/common/bonaiuto/infant_face_eeg/derivatives/';

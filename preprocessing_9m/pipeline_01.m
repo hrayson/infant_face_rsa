@@ -1,4 +1,4 @@
-%function NEAR_ICA_step1()
+function NEAR_ICA_step1()
 
 raw_data_dir='/home/common/bonaiuto/infant_9m_face_eeg/preprocessed_old/';
 deriv_data_dir='/home/common/bonaiuto/infant_9m_face_eeg/derivatives/';
@@ -203,7 +203,7 @@ for s_idx=1:length(subs)
     task_event_markers = {'ima1','mov1'};
 
     % epoch length in second
-    task_epoch_length = [-1 1.5; -.5 2.75];
+    task_epoch_length = [-1 1.5; -.75 2.75];
 
     % lower and upper threshold (in mV)
     volt_threshold = [-150 150];
