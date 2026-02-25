@@ -20,7 +20,7 @@ def generate_movement_type_rdm(f_cond):
     rdm=np.ones((len(f_cond),len(f_cond)))
     for i, cond1 in enumerate(f_cond):
         for j, cond2 in enumerate(f_cond):
-            if cond1[1]==cond2[1]:
+            if (cond1[2]=='shuffled' and cond2[2]=='shuffled') or (cond1[2]=='unshuffled' and cond2[2]=='unshuffled' and cond1[1]==cond2[1]) :
                 rdm[i,j]=0
                 rdm[j,i]=0
     return rdm
@@ -50,7 +50,7 @@ def generate_actor_rdm(f_cond):
     rdm=np.ones((len(f_cond),len(f_cond)))
     for i, cond1 in enumerate(f_cond):
         for j, cond2 in enumerate(f_cond):
-            if cond1[0]==cond2[0]:
+            if (cond1[2]=='shuffled' and cond2[2]=='shuffled') or (cond1[2]=='unshuffled' and cond2[2]=='unshuffled' and cond1[0]==cond2[0]):
                 rdm[i,j]=0
                 rdm[j,i]=0
     return rdm
@@ -122,6 +122,7 @@ def process_frame_flow(frame_fname, last_img_gray, n_flow):
     if last_img_gray is not None:
         flow = cv2.calcOpticalFlowFarneback(img_as_ubyte(last_img_gray), img_gray, None, 0.5, 3, 15, 3, 5, 1.2, 0)
         flow_vector = flow.reshape(-1)[:n_flow]
+        flow_vector[np.isnan(flow_vector)]=0
     else:
         flow_vector = np.zeros((n_flow))
     return flow_vector
